@@ -4,6 +4,7 @@ body {
     background-image: url('images/wave-haikei.svg');
     background-repeat: no-repeat;
     background-size: cover;
+    font-family: "Nunito";
 }
 
 .bg-img {
@@ -49,7 +50,6 @@ body {
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-template-areas: ". icons";
-    font-family: "Nunito";
     font-size: 22px;
     padding-left: 20px;
     font-weight: 600;
@@ -63,9 +63,64 @@ body {
 }
 
 .sidebar {
+    min-width: 60%;
+    grid-area: sidebar;
+    background: rgba( 201, 204, 193, 1 );
+    background: rgba( 235, 235, 235, 0.85 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 0px );
+    -webkit-backdrop-filter: blur( 0px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    width: 80%;
+    height: 85%;
+    margin-left: 10px;
+    margin-top: 10px;
+    display: grid;
+    grid-template-rows: 1fr 5fr 5fr;
+    grid-template-areas: "profile" "categories" "boards";
+    row-gap: 20px;
+}
+
+#profile {
+    grid-area: profile;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+}
+#todo-categories {
+    grid-area: categories;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 20px;
+    font-weight: 600;
+    font-size: 22px;
     
 }
 
+#todo-board {
+    grid-area: boards;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 20px;
+    font-weight: 600;
+    font-size: 22px;
+    
+}
+
+#button-container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10%;
+}
+
+button {
+    height: 10%;
+    
+}
 
 .body {
     grid-area: body;
