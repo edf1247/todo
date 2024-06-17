@@ -1,9 +1,14 @@
-import createTodo from "./todo.js";
+export function createTodo(title, date, description, priority, deadline) {
+    return {
+        title,
+        date,
+        description,
+        priority,
+        deadline
+    }
+}
 
-
-let todo = createTodo("test", "test", "test", "test", "test");
-
-function displayTodo(todo) {
+export function displayTodo(todo) {
     const container = document.getElementById("container");
     const todoContainer = document.createElement("div");
     const title = document.createElement("div");
@@ -26,5 +31,3 @@ function displayTodo(todo) {
     todoContainer.appendChild(priority);
     todoContainer.appendChild(deadline);
 }
-
-displayTodo(todo);
