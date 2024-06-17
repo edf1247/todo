@@ -78,7 +78,7 @@ body {
     margin-top: 10px;
     display: grid;
     grid-template-rows: 1fr 5fr 5fr;
-    grid-template-areas: "profile" "categories" "boards";
+    grid-template-areas: "profile" "timeframe" "projects";
     row-gap: 20px;
 }
 
@@ -90,18 +90,16 @@ body {
     gap: 10px;
     font-size: 18px;
 }
-#todo-categories {
-    grid-area: categories;
+#todo-timeframe {
+    grid-area: timeframe;
     display: flex;
     justify-content: flex-start;
     padding-left: 20px;
     font-weight: 600;
     font-size: 22px;
-    
 }
-
-#todo-board {
-    grid-area: boards;
+#todo-projects {
+    grid-area: projects;
     display: flex;
     justify-content: flex-start;
     padding-left: 20px;
@@ -117,11 +115,40 @@ body {
     margin-right: 10%;
 }
 
-button {
-    height: 10%;
-    
-}
-
 .body {
     grid-area: body;
+    background: rgba( 235, 235, 235, 0.85 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 0px );
+    -webkit-backdrop-filter: blur( 0px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    width: 90%;
+    height: 90%;
+    display: grid;
+    grid-template-rows: 1fr 7fr;
+}
+
+#body-title {
+    font-size: 32px;
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 5%;
+    align-items: center;
+}
+
+#body-container {
+    display: flex;
+    margin-left: 7%;
+    flex-direction: column;
+}
+
+#todo-container {
+    display: flex;
+    border: 3px solid black;
+    width: 30%;
+}
+
+#todoData {
+    display: flex;
 }
