@@ -7,3 +7,6 @@ displayTodo(todo);
 
 
 
+let todo2 = createTodo("test1", "test1", "test1", "test", "test");
+
+displayTodo(todo2);

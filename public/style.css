@@ -63,7 +63,7 @@ body {
 }
 
 .sidebar {
-    min-width: 60%;
+    min-width: 200px;
     grid-area: sidebar;
     background: rgba( 201, 204, 193, 1 );
     background: rgba( 235, 235, 235, 0.85 );
@@ -129,6 +129,54 @@ body {
     grid-template-rows: 1fr 7fr;
 }
 
+#body-header {
+    display: flex;
+    align-items: center;
+}
+
+#add-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 5%;
+}
+
+#add-todo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+.btn:hover .btn-slide-show-text1 {
+    margin-left: 65px;
+} 
+   
+.btn-rect-to-round {
+    height: 55px;
+    width: 200px;
+    font-size: 16px;
+    font-weight: 600;
+    background: transparent;
+    cursor: pointer;
+    transition: 0.25s ease-in;
+} 
+
+.btn-rect-to-round:hover {
+    border-radius: 60px;
+    color: rgb(255, 255, 255) !important;
+} 
+
+.btn-rect-to-round--black {
+    color: rgb(51, 51, 51) !important;
+    border: 2px solid rgb(51, 51, 51);
+} 
+
+.btn-rect-to-round--black:hover {
+    border-color: rgb(51, 51, 51);
+    background: rgb(51, 51, 51);
+} 
+
 #body-title {
     font-size: 32px;
     display: flex;
@@ -138,17 +186,73 @@ body {
 }
 
 #body-container {
-    display: flex;
+    display: grid;
     margin-left: 7%;
-    flex-direction: column;
+    grid-auto-flow: column;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 10px;
+    
 }
 
 #todo-container {
+    max-width: 350px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     display: flex;
     border: 3px solid black;
-    width: 30%;
+    width: 90%;
+    flex-direction: column;
+    padding: 5px;
 }
 
-#todoData {
+#todo-data {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 3fr;
+    grid-template-areas: "project deadline" "description priority";
+}
+
+#todo-title {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+#project {
+    grid-area: project;
+}
+
+#deadline {
+    grid-area: deadline;
+}
+
+#description {
+    grid-area: description;
+}
+
+#priority {
+    grid-area: priority;
+}
+
+#title-container {
     display: flex;
+    gap: 10px;
+}
+
+#delete-container{
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#delete-button {
+    border-radius: 10px;
+    padding: 1px;
+    transition-duration: .25s;
+    transition-property: background-color;
+}
+
+#delete-button:hover {
+    background-color: #3066be;
+    cursor: pointer;
 }
