@@ -8,6 +8,185 @@ export function createTodo(title, project, description, priority, deadline) {
     }
 }
 
+let todo = createTodo("test", "test", "test", "test", "test");
+let todo2 = createTodo("test1", "test1", "test1", "test", "test");
+
+let todoArr = [];
+todoArr.push(todo, todo2);
+
+const projects = ["test", "test"];
+
+
+export function todoForm() {
+    const newTodo = document.getElementById("add-todo");
+    newTodo.addEventListener("click", function (){
+        const header = document.getElementById("body-header");
+        const body = document.getElementById("body-container");
+
+        while (header.firstChild) {
+            header.removeChild(header.firstChild);
+        };
+        while (body.firstChild) {
+            body.removeChild(body.firstChild);
+        };
+        renderForm(projects);
+    });
+    
+}
+
+function renderForm(projects) {
+    let projectsArr = projects;
+    const bodyHeader = document.getElementById("body-header");
+    const bodyContainer = document.getElementById("body-container");
+    const todoTitle = document.createElement("div");
+    todoTitle.id = "body-title";
+    todoTitle.className = "todo-title";
+    todoTitle.innerHTML = "Create Todo";
+
+    const formContainer = document.createElement("div");
+    formContainer.id = "form-container";
+
+    const labelT = document.createElement("label");
+    labelT.htmlFor = "form-title";
+    labelT.innerHTML = "Title";
+
+    const labelPt = document.createElement("label");
+    labelPt.htmlFor = "form-project";
+    labelPt.innerHTML = "Projects";
+
+    const labelD = document.createElement("label");
+    labelD.htmlFor = "form-description";
+    labelD.innerHTML = "Description";
+
+    const labelPy = document.createElement("label");
+    labelPy.htmlFor = "form-priority";
+    labelPy.innerHTML = "Priority";
+
+    const labelDe = document.createElement("label");
+    labelDe.htmlFor = "form-deadline";
+    labelDe.innerHTML = "Deadline";
+
+    const projectDiv = document.createElement("div");
+    projectDiv.id = "project-div";
+
+    const descriptionDiv = document.createElement("div");
+    descriptionDiv.id = "description-div";
+
+    const priorityDiv = document.createElement("div");
+    priorityDiv.id = "priority-div";
+
+    const deadlineDiv = document.createElement("div");
+    deadlineDiv.id = "deadline-div";
+
+    const titleDiv = document.createElement("div");
+    titleDiv.id = "title-div";
+
+    const title = document.createElement("input");
+    title.id = "form-title";
+
+    const projectSel = document.createElement("select");
+    projectSel.id = "form-project";
+
+    for(let i=0; i < projects.length; i++) {
+        const curSelection = document.createElement("option");
+        curSelection.value = projects[i];
+        curSelection.innerHTML = projects[i];
+        curSelection.id = "option-" + i;
+        curSelection.className = "options";
+        projectSel.appendChild(curSelection);
+    };
+
+    const description = document.createElement("input");
+    description.type = "textarea";
+    description.id = "form-description";
+    description.addEventListener("input", autoResize);
+    description.maxLength = 60;
+
+    function autoResize() {
+        this.style.height = 'auto';
+        this.style.height = this.scrollHeight + 'px';
+    }
+
+    const priority = document.createElement("select");
+    const priorityOptions = ["Low", "Medium", "High"];
+    priority.id = "form-priority";
+
+    for (let i = 0; i < priorityOptions.length; i++) {
+        const pSelect = document.createElement("option");
+        pSelect.value = priorityOptions[i];
+        pSelect.innerHTML = priorityOptions[i];
+        pSelect.className = "options";
+        priority.appendChild(pSelect);
+    }
+
+    const deadlineInput = document.createElement("input");
+    deadlineInput.type = "date";
+    deadlineInput.max = "2035-01-01";
+    deadlineInput.min = new Date();
+    deadlineInput.id = "form-deadline";
+
+    const submitButton = document.createElement("input");
+    submitButton.type = "submit";
+    submitButton.value = "Add Item";
+    submitButton.id = "submit";
+    submitButton.className ="btn btn-rect-to-round btn-rect-to-round--black";
+
+    submitButton.addEventListener("click", function(){
+        event.preventDefault();
+        let todoTitle = document.getElementById("form-title").value;
+        let todoProjects = document.getElementById("form-project").value;
+        let todoPriority = document.getElementById("form-priority").value;
+        let todoDescription = document.getElementById("form-description").value;
+        let todoDeadline = document.getElementById("form-deadline").value;
+
+        let todoObj = createTodo(todoTitle, todoProjects, todoDescription, todoPriority, todoDeadline);
+        
+        todoArr.push(todoObj);
+        
+        const header = document.getElementById("body-header");
+        const body = document.getElementById("body-container");
+
+        while (header.firstChild) {
+            header.removeChild(header.firstChild);
+        };
+        while (body.firstChild) {
+            body.removeChild(body.firstChild);
+        };
+
+        header.innerHTML = "<div id='body-title'>Todo List</div><div id='add-container'><div id='add-todo' class='btn btn-rect-to-round btn-rect-to-round--black'>New <span class='material-symbols-outlined'>add</span></div></div>";
+        todoForm();
+        for(let i = 0; i < todoArr.length; i++) {
+            displayTodo(todoArr[i]);
+        }
+
+    });
+
+    titleDiv.appendChild(labelT);
+    titleDiv.appendChild(title);
+
+    projectDiv.appendChild(labelPt);
+    projectDiv.appendChild(projectSel);
+
+    descriptionDiv.appendChild(labelD);
+    descriptionDiv.appendChild(description);
+
+    priorityDiv.appendChild(labelPy);
+    priorityDiv.appendChild(priority);
+
+    deadlineDiv.appendChild(labelDe);
+    deadlineDiv.appendChild(deadlineInput);
+
+
+    bodyHeader.appendChild(todoTitle);
+    bodyContainer.appendChild(formContainer);
+    formContainer.appendChild(titleDiv);
+    formContainer.appendChild(projectDiv);
+    formContainer.appendChild(descriptionDiv);
+    formContainer.appendChild(priorityDiv);
+    formContainer.appendChild(deadlineDiv);
+    formContainer.appendChild(submitButton);
+}
+
 export function displayTodo(todo) {
     const container = document.getElementById("body-container");
     const todoContainer = document.createElement("div");
@@ -61,3 +240,5 @@ export function displayTodo(todo) {
     todoData.appendChild(deadline);
 
 }
+
+export {todoArr};

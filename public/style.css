@@ -256,3 +256,45 @@ body {
     background-color: #3066be;
     cursor: pointer;
 }
+
+#form-container {
+    padding-top: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(3, minmax(1fr, 2fr));
+    row-gap: 20px;
+    grid-row: 1/2;
+}
+
+#form-container div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+#form-container input {
+    width: 50%;
+}
+
+#form-container select {
+    width: 50%;
+}
+
+#form-container label {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.todo-title {
+    margin-top: 10px;
+}
+
+#form-description {
+    flex: 1;
+    height: 40px;
+}
+
+#form-container select {
+    width: 20%;
+}
