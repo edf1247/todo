@@ -8,12 +8,11 @@ export function createTodo(title, project, description, priority, deadline) {
     }
 }
 
-let todo = createTodo("test", "test", "test", "test", "test");
-let todo2 = createTodo("test1", "test1", "test1", "test", "test");
+let todo1 = createTodo("test", "test", "test", "test", "test");
+
 
 let todoArr = [];
-todoArr.push(todo, todo2);
-
+todoArr.push(todo1);
 const projects = ["test", "test"];
 
 
@@ -34,8 +33,8 @@ export function todoForm() {
     
 }
 
+
 function renderForm(projects) {
-    let projectsArr = projects;
     const bodyHeader = document.getElementById("body-header");
     const bodyContainer = document.getElementById("body-container");
     const todoTitle = document.createElement("div");
@@ -83,9 +82,11 @@ function renderForm(projects) {
 
     const title = document.createElement("input");
     title.id = "form-title";
+    title.required = true;
 
     const projectSel = document.createElement("select");
     projectSel.id = "form-project";
+    projectSel.required = true;
 
     for(let i=0; i < projects.length; i++) {
         const curSelection = document.createElement("option");
@@ -101,6 +102,7 @@ function renderForm(projects) {
     description.id = "form-description";
     description.addEventListener("input", autoResize);
     description.maxLength = 60;
+    description.required = true;
 
     function autoResize() {
         this.style.height = 'auto';
@@ -108,6 +110,7 @@ function renderForm(projects) {
     }
 
     const priority = document.createElement("select");
+    priority.setAttribute("required", "");
     const priorityOptions = ["Low", "Medium", "High"];
     priority.id = "form-priority";
 
@@ -124,6 +127,7 @@ function renderForm(projects) {
     deadlineInput.max = "2035-01-01";
     deadlineInput.min = new Date();
     deadlineInput.id = "form-deadline";
+    deadlineInput.setAttribute("required", "");
 
     const submitButton = document.createElement("input");
     submitButton.type = "submit";
@@ -131,34 +135,40 @@ function renderForm(projects) {
     submitButton.id = "submit";
     submitButton.className ="btn btn-rect-to-round btn-rect-to-round--black";
 
-    submitButton.addEventListener("click", function(){
-        event.preventDefault();
+    submitButton.addEventListener("click", function createTodoItem(){
         let todoTitle = document.getElementById("form-title").value;
         let todoProjects = document.getElementById("form-project").value;
         let todoPriority = document.getElementById("form-priority").value;
         let todoDescription = document.getElementById("form-description").value;
         let todoDeadline = document.getElementById("form-deadline").value;
 
-        let todoObj = createTodo(todoTitle, todoProjects, todoDescription, todoPriority, todoDeadline);
-        
-        todoArr.push(todoObj);
-        
-        const header = document.getElementById("body-header");
-        const body = document.getElementById("body-container");
-
-        while (header.firstChild) {
-            header.removeChild(header.firstChild);
-        };
-        while (body.firstChild) {
-            body.removeChild(body.firstChild);
-        };
-
-        header.innerHTML = "<div id='body-title'>Todo List</div><div id='add-container'><div id='add-todo' class='btn btn-rect-to-round btn-rect-to-round--black'>New <span class='material-symbols-outlined'>add</span></div></div>";
-        todoForm();
-        for(let i = 0; i < todoArr.length; i++) {
-            displayTodo(todoArr[i]);
+        if (todoTitle == null || todoProjects == null || todoPriority == null || todoDescription == null || todoDeadline== null) {
+            let alert = document.createElement("div");
+            alert.innerHTML = "Please fill out all required fields.";
+            alert.id = "alert";
+            bodyContainer.appendChild(alert);
         }
+        else {
+            let todoObj = createTodo(todoTitle, todoProjects, todoDescription, todoPriority, todoDeadline);
+        
+            todoArr.push(todoObj);
+            
+            const header = document.getElementById("body-header");
+            const body = document.getElementById("body-container");
 
+            while (header.firstChild) {
+                header.removeChild(header.firstChild);
+            };
+            while (body.firstChild) {
+                body.removeChild(body.firstChild);
+            };
+
+            header.innerHTML = "<div id='body-title'>Todo List</div><div id='add-container'><div id='add-todo' class='btn btn-rect-to-round btn-rect-to-round--black'>New <span class='material-symbols-outlined'>add</span></div></div>";
+            todoForm();
+            for(let i = 0; i < todoArr.length; i++) {
+                displayTodo(todoArr[i]);
+            }
+        }
     });
 
     titleDiv.appendChild(labelT);
@@ -187,6 +197,8 @@ function renderForm(projects) {
     formContainer.appendChild(submitButton);
 }
 
+
+
 export function displayTodo(todo) {
     const container = document.getElementById("body-container");
     const todoContainer = document.createElement("div");
@@ -207,9 +219,15 @@ export function displayTodo(todo) {
     deleteIcon.id = "delete-button";
     deleteIcon.innerHTML = "delete";
 
-    deleteIcon.addEventListener("click", function(){
-        todoContainer.remove();
-    })
+    for(let i = 0; i < todoArr.length; i++) {
+        todoContainer.className = i;
+        deleteIcon.addEventListener("click", function(){
+            todoContainer.remove();
+            todoArr.splice(i, 1);
+        })
+    }
+
+    
 
     titleContainer.id = "title-container";
 
