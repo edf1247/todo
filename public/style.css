@@ -194,7 +194,7 @@ body {
     
 }
 
-#todo-container {
+.todo-container {
     max-width: 350px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -275,6 +275,7 @@ body {
 
 #form-container input {
     width: 50%;
+    
 }
 
 #form-container select {

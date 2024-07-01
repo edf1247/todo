@@ -165,9 +165,7 @@ function renderForm(projects) {
 
             header.innerHTML = "<div id='body-title'>Todo List</div><div id='add-container'><div id='add-todo' class='btn btn-rect-to-round btn-rect-to-round--black'>New <span class='material-symbols-outlined'>add</span></div></div>";
             todoForm();
-            for(let i = 0; i < todoArr.length; i++) {
-                displayTodo(todoArr[i]);
-            }
+            displayTodo();
         }
     });
 
@@ -199,64 +197,72 @@ function renderForm(projects) {
 
 
 
-export function displayTodo(todo) {
-    const container = document.getElementById("body-container");
-    const todoContainer = document.createElement("div");
-    const title = document.createElement("div");
-    const project = document.createElement("div");
-    const description = document.createElement("div");
-    const priority =  document.createElement("div");
-    const deadline = document.createElement("div");
-    const todoData = document.createElement("div");
-    todoContainer.id = "todo-container";
-    todoData.id = "todo-data";
-    const completed = document.createElement("input");
-    const titleContainer = document.createElement("div");
-    const deleteIcon = document.createElement("div");
-    const deleteContainer = document.createElement("div");
-    deleteContainer.id = "delete-container";
-    deleteIcon.className = "material-symbols-outlined";
-    deleteIcon.id = "delete-button";
-    deleteIcon.innerHTML = "delete";
+export function displayTodo() {
+    for (let i = 0; i < todoArr.length; i++){
+        let todo = todoArr[i];
+        const container = document.getElementById("body-container");
+        const todoContainer = document.createElement("div");
+        const title = document.createElement("div");
+        const project = document.createElement("div");
+        const description = document.createElement("div");
+        const priority =  document.createElement("div");
+        const deadline = document.createElement("div");
+        const todoData = document.createElement("div");
+        todoContainer.className = "todo-container";
+        todoData.id = "todo-data";
+        const completed = document.createElement("input");
+        const titleContainer = document.createElement("div");
+        const deleteIcon = document.createElement("div");
+        const deleteContainer = document.createElement("div");
+        deleteContainer.id = "delete-container";
+        deleteIcon.className = "material-symbols-outlined";
+        deleteIcon.id = "delete-button";
+        deleteIcon.innerHTML = "delete";
+        todoContainer.id = i;
 
-    for(let i = 0; i < todoArr.length; i++) {
-        todoContainer.className = i;
+
         deleteIcon.addEventListener("click", function(){
+            let currentTodo = todoContainer.id;
             todoContainer.remove();
-            todoArr.splice(i, 1);
+            todoArr.splice(currentTodo, 1);
+            console.log(todoArr);
+            let selector = document.getElementsByClassName("todo-container");
+            var renderedTodos = Array.from(selector);
+            for(let i = 0; i < renderedTodos.length; i++){
+                renderedTodos[i].id = i;
+            }
         })
+
+        titleContainer.id = "title-container";
+
+        completed.type = "checkbox";
+
+
+        title.innerHTML = todo.title;
+        title.id = "todo-title";
+        project.innerHTML = todo.project;
+        project.id = "project";
+        description.innerHTML = "Description " + todo.description;
+        description.id = "description";
+        priority.innerHTML = "Priority: " + todo.priority;
+        priority.id = "priority";
+        deadline.innerHTML = "Deadline: " + todo.deadline;
+        deadline.id = "deadline";
+
+        container.appendChild(todoContainer);
+        titleContainer.appendChild(completed);
+        titleContainer.appendChild(title);
+        titleContainer.appendChild(deleteContainer);
+        deleteContainer.appendChild(deleteIcon);
+        todoContainer.appendChild(titleContainer);
+        todoContainer.appendChild(todoData);
+        todoData.appendChild(project);
+        todoData.appendChild(description);
+        todoData.appendChild(priority);
+        todoData.appendChild(deadline);
+
     }
-
     
-
-    titleContainer.id = "title-container";
-
-    completed.type = "checkbox";
-
-
-    title.innerHTML = todo.title;
-    title.id = "todo-title";
-    project.innerHTML = todo.project;
-    project.id = "project";
-    description.innerHTML = "Description " + todo.description;
-    description.id = "description";
-    priority.innerHTML = "Priority: " + todo.priority;
-    priority.id = "priority";
-    deadline.innerHTML = "Deadline: " + todo.deadline;
-    deadline.id = "deadline";
-
-    container.appendChild(todoContainer);
-    titleContainer.appendChild(completed);
-    titleContainer.appendChild(title);
-    titleContainer.appendChild(deleteContainer);
-    deleteContainer.appendChild(deleteIcon);
-    todoContainer.appendChild(titleContainer);
-    todoContainer.appendChild(todoData);
-    todoData.appendChild(project);
-    todoData.appendChild(description);
-    todoData.appendChild(priority);
-    todoData.appendChild(deadline);
-
 }
 
 export {todoArr};
