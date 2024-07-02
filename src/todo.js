@@ -42,6 +42,30 @@ function renderForm(projects) {
     todoTitle.className = "todo-title";
     todoTitle.innerHTML = "Create Todo";
 
+    const closeContainer = document.createElement("div");
+    closeContainer.id = "close-container";
+
+    const closeWindow = document.createElement("div");
+    closeWindow.id = "close-window";
+
+    closeContainer.appendChild(closeWindow);
+
+    closeWindow.addEventListener("click", function(){
+        const header = document.getElementById("body-header");
+        const body = document.getElementById("body-container");
+
+        while (header.firstChild) {
+            header.removeChild(header.firstChild);
+        };
+        while (body.firstChild) {
+            body.removeChild(body.firstChild);
+        };
+
+        header.innerHTML = "<div id='body-title'>Todo List</div><div id='add-container'><div id='add-todo' class='btn btn-rect-to-round btn-rect-to-round--black'>New <span class='material-symbols-outlined'>add</span></div></div>";
+        todoForm();
+        displayTodo();
+    });
+
     const formContainer = document.createElement("div");
     formContainer.id = "form-container";
 
@@ -186,6 +210,7 @@ function renderForm(projects) {
 
 
     bodyHeader.appendChild(todoTitle);
+    bodyHeader.appendChild(closeContainer);
     bodyContainer.appendChild(formContainer);
     formContainer.appendChild(titleDiv);
     formContainer.appendChild(projectDiv);
