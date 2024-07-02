@@ -346,3 +346,23 @@ body {
     background-image: url("../public/images/grey.svg");
     cursor: pointer;
 }
+
+#blur {
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0px;
+    left:0px;
+    z-index:1000;
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#project-form-container {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    
+}
