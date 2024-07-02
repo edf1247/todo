@@ -250,10 +250,14 @@ body {
     padding: 1px;
     transition-duration: .25s;
     transition-property: background-color;
+    background-image: url("../public/images/delete.svg");
+    width: 22px;
+    height: 22px;
 }
 
 #delete-button:hover {
-    background-color: #3066be;
+    fill: red;
+    background-image: url("../public/images/delete_red.svg");
     cursor: pointer;
 }
 
@@ -298,4 +302,29 @@ body {
 
 #form-container select {
     width: 20%;
+}
+
+#project-button {
+    height: 24px;
+}
+
+#todo-projects {
+    display: flex;
+    flex-direction: column;
+}
+
+#project-hero {
+    display: flex;
+}
+
+#project-container {
+    margin-top: 20px;
+}
+
+.projects {
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    margin-right: 20px;
+    margin-top: 10px;
 }

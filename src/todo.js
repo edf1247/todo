@@ -215,9 +215,7 @@ export function displayTodo() {
         const deleteIcon = document.createElement("div");
         const deleteContainer = document.createElement("div");
         deleteContainer.id = "delete-container";
-        deleteIcon.className = "material-symbols-outlined";
         deleteIcon.id = "delete-button";
-        deleteIcon.innerHTML = "delete";
         todoContainer.id = i;
 
 
