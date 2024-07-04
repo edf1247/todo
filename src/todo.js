@@ -1,3 +1,5 @@
+import { projectList } from "./projects";
+
 export function createTodo(title, project, description, priority, deadline) {
     return {
         title,
@@ -13,7 +15,6 @@ let todo1 = createTodo("test", "test", "test", "test", "test");
 
 let todoArr = [];
 todoArr.push(todo1);
-const projects = ["test", "test"];
 
 
 export function todoForm() {
@@ -28,7 +29,7 @@ export function todoForm() {
         while (body.firstChild) {
             body.removeChild(body.firstChild);
         };
-        renderForm(projects);
+        renderForm(projectList);
     });
     
 }

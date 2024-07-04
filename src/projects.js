@@ -1,4 +1,4 @@
-let projectList = ["test", "test"];
+export var projectList = ["test", "test"];
 
 export function renderProjectList(){
     for(let i = 0; i < projectList.length; i++){
@@ -18,6 +18,10 @@ export function renderProjectList(){
     }
 }
 
+function alertUser(){
+    alert("Please enter a project name.");
+}
+
 function addProjectDom() {
     const page = document.getElementById("body");
     const blur = document.createElement("div");
@@ -29,16 +33,33 @@ function addProjectDom() {
     const projInput = document.createElement("input");
     const projInputLabel = document.createElement("div");
     const submitCont = document.createElement("div");
-    const submitText = document.createElement("div");
-    const plusIcon = document.createElement("div");
+    const submitText = document.createElement("button");
     const wrapper = document.createElement("div");
 
     wrapper.id = "wrapper";
 
-    plusIcon.id = "plus-icon";
+    submitText.type = "submit";
     submitText.innerHTML = "Create";
-    submitText.id = "submit-project";
+    submitText.className = "button-4";
     submitCont.id = "submit-cont";
+
+    submitText.addEventListener("click", function(){
+        event.preventDefault();
+        let userInput = projInput.value;
+        if (userInput.length == 0) {
+            alertUser();
+        }
+        else {
+            projectList.push(userInput);
+            console.log(projectList);
+            blur.innerHTML = " ";
+            blur.remove();
+
+            document.getElementById("project-container").innerHTML = "";
+
+            renderProjectList();
+        }
+    });
 
     formContainer.id = "project-form-container";
     formTitle.id = "project-title-container";
@@ -55,7 +76,6 @@ function addProjectDom() {
     wrapper.appendChild(projInputLabel);
     wrapper.appendChild(projInput);
 
-    submitText.appendChild(plusIcon);
     submitCont.appendChild(submitText);
     
 
@@ -69,22 +89,12 @@ function addProjectDom() {
     blur.appendChild(formContainer);
 }
 
-function processProjectInput(){
-    const projectName = document.getElementById("proj-input").value;
-    const projectSubmit = document.getElementById("submit-project");
 
-    projectSubmit.addEventListener("click", function(){
-        projectList.push(projectName);
-        console.log(projectList);
-    });
-
-
-}
 
 export function renderAddProjectForm() {
     let button = document.getElementById("project-button");
     button.addEventListener("click", function(){
         addProjectDom();
-        processProjectInput();
+        
     });
 }
