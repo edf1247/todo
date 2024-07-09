@@ -1,9 +1,14 @@
 export var projectList = ["test", "test"];
 
+
+
 export function renderProjectList(){
-    for(let i = 0; i < projectList.length; i++){
+    for(var i = 0; i < projectList.length; i++){
         const projectContainer = document.getElementById("project-container");
         const projectDiv = document.createElement("div");
+        projectDiv.id = i;
+        const removeProject = document.createElement("div");
+        removeProject.id = "remove-project";
         projectDiv.className = "projects";
         const projectName = document.createElement("div");
         projectName.innerHTML = projectList[i];
@@ -12,8 +17,16 @@ export function renderProjectList(){
         const projectTracker = document.createElement("div");
         projectTracker.id = "project-tracker";
 
+        removeProject.addEventListener("click", function (){
+            let curSelection = projectDiv.id;
+            projectList.splice(curSelection, 1);
+            projectContainer.innerHTML = "";
+            renderProjectList();
+        });
+        
         projectDiv.appendChild(projectName);
         projectDiv.appendChild(projectTracker);
+        projectDiv.appendChild(removeProject);
         projectContainer.appendChild(projectDiv);
     }
 }

@@ -1,16 +1,17 @@
 import { projectList } from "./projects";
 
-export function createTodo(title, project, description, priority, deadline) {
+export function createTodo(title, project, description, priority, deadline, completed) {
     return {
         title,
         project,
         description,
         priority,
-        deadline
+        deadline,
+        completed
     }
 }
 
-let todo1 = createTodo("test", "test", "test", "test", "test");
+let todo1 = createTodo("test", "test", "test", "test", "test", "true");
 
 
 let todoArr = [];
@@ -166,15 +167,13 @@ function renderForm(projects) {
         let todoPriority = document.getElementById("form-priority").value;
         let todoDescription = document.getElementById("form-description").value;
         let todoDeadline = document.getElementById("form-deadline").value;
+        let completed = false;
 
-        if (todoTitle == null || todoProjects == null || todoPriority == null || todoDescription == null || todoDeadline== null) {
-            let alert = document.createElement("div");
-            alert.innerHTML = "Please fill out all required fields.";
-            alert.id = "alert";
-            bodyContainer.appendChild(alert);
+        if (todoTitle.length == 0 || todoProjects == 0 || todoPriority == 0 || todoDescription == 0 || todoDeadline== 0) {
+            alert("Please fill out all required fields.");
         }
         else {
-            let todoObj = createTodo(todoTitle, todoProjects, todoDescription, todoPriority, todoDeadline);
+            let todoObj = createTodo(todoTitle, todoProjects, todoDescription, todoPriority, todoDeadline, completed);
         
             todoArr.push(todoObj);
             
@@ -260,6 +259,11 @@ export function displayTodo() {
         titleContainer.id = "title-container";
 
         completed.type = "checkbox";
+        completed.id = "completed";
+        completed.checked = todo.completed;
+        completed.addEventListener("click", function(){
+            todo.completed = completed.checked;
+        })
 
 
         title.innerHTML = todo.title;

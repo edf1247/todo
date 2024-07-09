@@ -331,6 +331,7 @@ body {
     justify-content: center;
     margin-right: 20px;
     margin-top: 10px;
+    gap: 10px;
 }
 
 #close-container {
@@ -461,4 +462,21 @@ body {
 #blur {
     display: flex;
     flex-direction: column;
+}
+
+#remove-project {
+    margin-left: 40px;
+    background-image: url("../public/images/remove_black.svg");
+    width: 22px;
+    height: 22px;
+}
+
+#remove-project:hover {
+    background-image: url("../public/images/remove_red.svg");
+}
+
+#project-name {
+    flex: 1;
+    display: flex;
+    justify-content: center;
 }
