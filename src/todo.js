@@ -1,4 +1,6 @@
 import { projectList } from "./projects";
+import { countTodo } from "./projects";
+import { renderProjectList } from "./projects";
 
 export function createTodo(title, project, description, priority, deadline, completed) {
     return {
@@ -116,8 +118,8 @@ function renderForm(projects) {
 
     for(let i=0; i < projects.length; i++) {
         const curSelection = document.createElement("option");
-        curSelection.value = projects[i];
-        curSelection.innerHTML = projects[i];
+        curSelection.value = projects[i].projectName;
+        curSelection.innerHTML = projects[i].projectName;
         curSelection.id = "option-" + i;
         curSelection.className = "options";
         projectSel.appendChild(curSelection);
@@ -174,9 +176,11 @@ function renderForm(projects) {
         }
         else {
             let todoObj = createTodo(todoTitle, todoProjects, todoDescription, todoPriority, todoDeadline, completed);
-        
+            
             todoArr.push(todoObj);
             
+            countTodo();
+
             const header = document.getElementById("body-header");
             const body = document.getElementById("body-container");
 
@@ -190,6 +194,7 @@ function renderForm(projects) {
             header.innerHTML = "<div id='body-title'>Todo List</div><div id='add-container'><div id='add-todo' class='btn btn-rect-to-round btn-rect-to-round--black'>New <span class='material-symbols-outlined'>add</span></div></div>";
             todoForm();
             displayTodo();
+            
         }
     });
 
@@ -223,6 +228,8 @@ function renderForm(projects) {
 
 
 export function displayTodo() {
+    
+    
     for (let i = 0; i < todoArr.length; i++){
         let todo = todoArr[i];
         const container = document.getElementById("body-container");
@@ -243,12 +250,13 @@ export function displayTodo() {
         deleteIcon.id = "delete-button";
         todoContainer.id = i;
 
+        
 
         deleteIcon.addEventListener("click", function(){
             let currentTodo = todoContainer.id;
             todoContainer.remove();
             todoArr.splice(currentTodo, 1);
-            console.log(todoArr);
+            countTodo();
             let selector = document.getElementsByClassName("todo-container");
             var renderedTodos = Array.from(selector);
             for(let i = 0; i < renderedTodos.length; i++){

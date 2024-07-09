@@ -1,21 +1,61 @@
-export var projectList = ["test", "test"];
+import { todoArr } from "./todo";
 
+export var projectList = [];
 
+function createProject(projectName){
+    let todoCount = 0;
+    return {
+        projectName, todoCount
+    }
+}
+
+let project1 = createProject("test");
+projectList.push(project1);
+
+export function resetTodoCount(){
+    for(let i = 0; i < projectList.length; i++){
+        projectList[i].todoCount = 0;
+    }
+}
+
+export function countTodo(){
+    for(let j = 0; j < projectList.length; j++){
+        let curProject = projectList[j];
+        let counter = 0;
+        for(let i = 0; i < todoArr.length; i++){
+            if(todoArr[i].project === curProject.projectName){
+                counter++;
+                
+            }
+        }
+        curProject.todoCount = counter;
+        console.log(projectList);
+
+        let selector = document.getElementsByClassName("project-tracker");
+        selector[j].innerHTML = curProject.todoCount;
+    }
+    
+}
 
 export function renderProjectList(){
     for(var i = 0; i < projectList.length; i++){
         const projectContainer = document.getElementById("project-container");
+        
         const projectDiv = document.createElement("div");
         projectDiv.id = i;
         const removeProject = document.createElement("div");
         removeProject.id = "remove-project";
         projectDiv.className = "projects";
         const projectName = document.createElement("div");
-        projectName.innerHTML = projectList[i];
+        
+        projectName.innerHTML = projectList[i].projectName;
         projectName.id = "project-name";
+        
 
         const projectTracker = document.createElement("div");
         projectTracker.id = "project-tracker";
+        projectTracker.innerHTML = projectList[i].todoCount;
+        projectTracker.className = "project-tracker"
 
         removeProject.addEventListener("click", function (){
             let curSelection = projectDiv.id;
@@ -28,12 +68,16 @@ export function renderProjectList(){
         projectDiv.appendChild(projectTracker);
         projectDiv.appendChild(removeProject);
         projectContainer.appendChild(projectDiv);
+        
     }
+    countTodo();
 }
 
 function alertUser(){
     alert("Please enter a project name.");
 }
+
+
 
 function addProjectDom() {
     const page = document.getElementById("body");
@@ -62,9 +106,13 @@ function addProjectDom() {
         if (userInput.length == 0) {
             alertUser();
         }
+        else if(projectList.some((x) => x.projectName === userInput)){
+            alert("Looks like you already have the project " + userInput + ". Please enter a new project name!");
+        }
         else {
-            projectList.push(userInput);
-            console.log(projectList);
+
+            let project = createProject(userInput);
+            projectList.push(project);
             blur.innerHTML = " ";
             blur.remove();
 
@@ -100,6 +148,7 @@ function addProjectDom() {
 
     page.appendChild(blur);
     blur.appendChild(formContainer);
+    
 }
 
 
