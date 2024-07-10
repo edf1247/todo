@@ -12,11 +12,6 @@ function createProject(projectName){
 let project1 = createProject("test");
 projectList.push(project1);
 
-export function resetTodoCount(){
-    for(let i = 0; i < projectList.length; i++){
-        projectList[i].todoCount = 0;
-    }
-}
 
 export function countTodo(){
     for(let j = 0; j < projectList.length; j++){

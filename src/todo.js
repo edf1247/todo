@@ -276,9 +276,9 @@ export function displayTodo() {
 
         title.innerHTML = todo.title;
         title.id = "todo-title";
-        project.innerHTML = todo.project;
+        project.innerHTML = "Project: " + todo.project;
         project.id = "project";
-        description.innerHTML = "Description " + todo.description;
+        description.innerHTML = "Description: " + todo.description;
         description.id = "description";
         priority.innerHTML = "Priority: " + todo.priority;
         priority.id = "priority";

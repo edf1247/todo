@@ -482,10 +482,38 @@ body {
 }
 
 #project-tracker {
-    background-color: #24292E;
-    color: #F3F4F6;
-    width: 30px;
+    border: 2px solid #24292E;
+    
+    width: 25px;
     
     text-align: center;
     border-radius: 20px;
 }
+
+#todo-timeframe {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+    "header" 
+    "day"
+    "week"
+    "month";
+}
+
+#todo-timeframe div{
+    font-size: 18px;
+    padding-left: 20px;
+    display: flex;
+}
+
+#today-cont {
+    grid-area: day;
+}
+
+#week-cont{
+    grid-area: week;
+}
+#month-cont {
+    grid-area: month;
+}
+
