@@ -3,11 +3,11 @@ import { todoArr } from "./todo";
 function countToday(){
     let counter = 0;
     for(let i = 0; i < todoArr.length; i++){
-        let todoDate = todoArr[i].deadline;
+        let todoDate = new Date(todoArr[i].deadline);
 
         let todaysDate = new Date();
 
-        if(todoDate.setHours(0, 0, 0, 0) === todaysDate.setHours(0, 0, 0, 0)){
+        if(todoDate.getDate() === todaysDate.getDate() && todoDate.getMonth() === todaysDate.getMonth() && todoDate.getFullYear() === todaysDate.getFullYear()){
             counter++;
         }
     }
@@ -18,7 +18,7 @@ function countToday(){
 function countWeek(){
     let counter = 0;
     for(let i = 0; i < todoArr.length; i++){
-        let todoDate = todoArr[i].deadline;
+        let todoDate = new Date(todoArr[i].deadline);
 
         let now = new Date();
 
@@ -37,7 +37,7 @@ function countWeek(){
 function countMonth(){
     let counter = 0;
     for(let i = 0; i < todoArr.length; i++){
-        let todoDate = todoArr[i].deadline;
+        let todoDate = new Date(todoArr[i].deadline);
 
         let now = new Date();
 
@@ -50,4 +50,19 @@ function countMonth(){
     }
     let numMonth = counter;
     return numMonth;
+}
+
+export function updateCalender(){
+    let today = countToday();
+    let week = countWeek();
+    let month = countMonth();
+
+    let todayTracker = document.getElementById("day-counter");
+    todayTracker.innerHTML = today;
+
+    let weekTracker = document.getElementById("week-counter");
+    weekTracker.innerHTML = week;
+
+    let monthTracker = document.getElementById("month-counter");
+    monthTracker.innerHTML = month;
 }

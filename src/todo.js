@@ -1,6 +1,6 @@
 import { projectList } from "./projects";
 import { countTodo } from "./projects";
-import { renderProjectList } from "./projects";
+import { updateCalender } from "./calender";
 
 export function createTodo(title, project, description, priority, deadline, completed) {
     return {
@@ -13,7 +13,7 @@ export function createTodo(title, project, description, priority, deadline, comp
     }
 }
 
-let todo1 = createTodo("test", "test", "test", "test", "test", "true");
+let todo1 = createTodo("test", "test", "test", "test", "2024-07-10T03:25:50.119Z", "true");
 
 
 let todoArr = [];
@@ -194,7 +194,7 @@ function renderForm(projects) {
             header.innerHTML = "<div id='body-title'>Todo List</div><div id='add-container'><div id='add-todo' class='btn btn-rect-to-round btn-rect-to-round--black'>New <span class='material-symbols-outlined'>add</span></div></div>";
             todoForm();
             displayTodo();
-            
+            updateCalender()
         }
     });
 
@@ -257,6 +257,7 @@ export function displayTodo() {
             todoContainer.remove();
             todoArr.splice(currentTodo, 1);
             countTodo();
+            updateCalender()
             let selector = document.getElementsByClassName("todo-container");
             var renderedTodos = Array.from(selector);
             for(let i = 0; i < renderedTodos.length; i++){
