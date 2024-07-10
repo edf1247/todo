@@ -34,5 +34,20 @@ function countWeek(){
     return numWeek;
 }
 
+function countMonth(){
+    let counter = 0;
+    for(let i = 0; i < todoArr.length; i++){
+        let todoDate = todoArr[i].deadline;
 
+        let now = new Date();
 
+        let curMonth = now.getMonth();
+
+        if(todoDate.getMonth() === curMonth) {
+            counter++;
+        }
+
+    }
+    let numMonth = counter;
+    return numMonth;
+}
