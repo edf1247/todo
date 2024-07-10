@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>ToDo List</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    </head>
+    <body class="light-mode">
+        <div id="container">
+            <div class="header-container">
+                <div id="header-text">
+                    YOUR TODOS
+                    <div id="icons">
+                        <div class="material-symbols-outlined">
+                            home
+                        </div>
+                        <div class="material-symbols-outlined">
+                            settings
+                        </div>
+                        <div class="material-symbols-outlined">
+                            more_horiz
+                        </div>
+                    </div> 
+                </div>
+                <div id="darkmode-container">
+                    <div class="dm-icon-light" id="dm-button"></div>
+                </div>
+            </div>
+            <div class="sidebar">
+                <div id="profile">
+                    <span class="material-symbols-outlined">account_circle</span> Your Profile
+                </div>
+                <div id="todo-timeframe">Calender
+                    <div id="today-cont">
+                        Due Today:
+                    </div>
+                    <div id="day-counter" class="counter"></div> 
+                    <div id="week-cont">
+                        Due This Week: 
+                    </div>
+                    <div id="week-counter" class="counter"></div>
+                    <div id="month-cont">
+                        Due This Month: 
+                    </div>
+                    <div id="month-counter" class="counter"></div>
+                </div>
+                <div id="todo-projects">
+                    <div id="project-hero">Todo Projects
+                        <div id="button-container">
+                            <div class="material-symbols-outlined" id="project-button">
+                                add_circle
+                            </div>
+                        </div>
+                    </div>
+                    <div id="project-container">
+
+                    </div>
+                </div>
+            </div>
+            <div class="body">
+                <div id="body-header">
+                    <div id="body-title">Todo List</div>
+                    <div id="add-container">
+                        <div id="add-todo" class="btn btn-rect-to-round btn-rect-to-round--black">
+                            New <span class="material-symbols-outlined">add</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="body-container"></div>
+            </div> 
+        </div>
+    </body>
+    <script defer src="../dist/bundle.js"> </script>
+</html>
