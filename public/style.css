@@ -493,11 +493,22 @@ body {
 #todo-timeframe {
     display: grid;
     grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr;
     grid-template-areas:
-    "header" 
-    "day"
-    "week"
-    "month";
+    "header ." 
+    "day day-counter"
+    "week week-counter"
+    "month month-counter";
+}
+
+#todo-timeframe .counter {
+    padding-left: 0;
+    border: 2px solid #24292E;
+    height: 25px;
+    max-width: 25px;
+    display: flex;
+    justify-content: center;
+    border-radius: 20px;
 }
 
 #todo-timeframe div{
@@ -515,5 +526,17 @@ body {
 }
 #month-cont {
     grid-area: month;
+}
+
+#day-counter {
+    grid-area: day-counter;
+}
+
+#week-counter {
+    grid-area: week-counter;
+}
+
+#month-counter {
+    grid-area: month-counter;
 }
 
