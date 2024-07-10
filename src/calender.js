@@ -15,3 +15,24 @@ function countToday(){
     return numToday;
 }
 
+function countWeek(){
+    let counter = 0;
+    for(let i = 0; i < todoArr.length; i++){
+        let todoDate = todoArr[i].deadline;
+
+        let now = new Date();
+
+        let inWeek = new Date();
+        inWeek.setDate(inWeek.getDate() +7);
+
+        if(todoDate.valueOf() >= now.valueOf() && todoDate.valueOf() <= inWeek.valueOf()){
+            counter++;
+        }
+
+    }
+    let numWeek = counter;
+    return numWeek;
+}
+
+
+
