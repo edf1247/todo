@@ -255,14 +255,14 @@ body {
     padding: 1px;
     transition-duration: .25s;
     transition-property: background-color;
-    background-image: url("../public/images/delete.svg");
+    background-image: url("images/delete.svg");
     width: 22px;
     height: 22px;
 }
 
 #delete-button:hover {
     fill: red;
-    background-image: url("../public/images/delete_red.svg");
+    background-image: url("images/delete_red.svg");
     cursor: pointer;
 }
 
@@ -347,13 +347,13 @@ body {
 }
 
 #close-window {
-    background-image: url("../public/images/exit.svg");
+    background-image: url("images/exit.svg");
     width: 22px;
     height: 22px;
 }
 
 #close-window:hover {
-    background-image: url("../public/images/grey.svg");
+    background-image: url("images/grey.svg");
     cursor: pointer;
 }
 
@@ -471,13 +471,13 @@ body {
 
 #remove-project {
     margin-left: 40px;
-    background-image: url("../public/images/remove_black.svg");
+    background-image: url("images/remove_black.svg");
     width: 22px;
     height: 22px;
 }
 
 #remove-project:hover {
-    background-image: url("../public/images/remove_red.svg");
+    background-image: url("images/remove_red.svg");
 }
 
 #project-name {
@@ -555,13 +555,13 @@ body {
 }
 
 .dm-icon-light {
-    background-image: url(../public/images/dm_button.svg);
+    background-image: url('images/dm_button.svg');
     width: 36px;
     height: 36px;
 }
 
 .dm-icon-dark {
-    background-image: url(../public/images/white.svg);
+    background-image: url('images/white.svg');
     width: 36px;
     height: 36px;
 }
