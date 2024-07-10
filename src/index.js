@@ -11,3 +11,15 @@ renderProjectList();
 renderAddProjectForm();
 countTodo();
 updateCalender()
+
+function darkMode(){
+    let dmButton = document.getElementById("dm-button");
+    let background = document.body;
+
+    dmButton.addEventListener("click", function(){
+        background.classList.toggle("dark-mode");
+        dmButton.classList.toggle("dm-icon-dark");
+    });
+}
+
+darkMode();

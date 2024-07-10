@@ -13,7 +13,7 @@ export function createTodo(title, project, description, priority, deadline, comp
     }
 }
 
-let todo1 = createTodo("test", "test", "test", "test", "2024-07-10T03:25:50.119Z", "true");
+let todo1 = createTodo("test", "test", "test", "test", "2024-07-10", "true");
 
 
 let todoArr = [];
