@@ -480,3 +480,12 @@ body {
     display: flex;
     justify-content: center;
 }
+
+#project-tracker {
+    background-color: #24292E;
+    color: #F3F4F6;
+    width: 30px;
+    
+    text-align: center;
+    border-radius: 20px;
+}
